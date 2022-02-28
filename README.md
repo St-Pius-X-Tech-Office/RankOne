@@ -18,3 +18,9 @@ To run the python scripts, you will need to have the following:
 * Python Packages:
 	* Pandas
 	* Requests
+
+
+### Credentials
+
+The credentials have to be received from a RankOne representative. Once received, make the necessary changes in the 'Sample_Credential.json" file. 
+Be sure to rename the file accordingly in both the explorer and the main rankone.py script
