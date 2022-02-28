@@ -3,11 +3,11 @@
 This document will provide the information for the API call and subsequent python script.
 
 ## Authentication
-In order to pull information using the rankone API, the following parameters have to be added to the call in order to retrieve information. *Note:* This could change so update accordingly.
+In order to pull information using the rankone API, the following parameters have to be added to the call in order to retrieve information. *Note:* This could change so update accordingly. For security reasons, this will not be added to the main script for GIT changes. Please contact someone in office for the credentials.
 
-* **Username:** stpius
-* **Password:** RYn6cNYUma3dH3kqZu
-* **API Key:** cjQzdXF2eDN6d3ozMWFoazhhYnZmaWVueXo0ODVwNXo6dWRmbGt5dWYzNzhtOWpjOG91a3oydDMxamN4bXBvaHI=
+* **Username**
+* **Password**
+* **API Key**
 
 ## Pre-Reqs
 Before running the script, we will need to have python3.8+ installed, along with the following packages.
@@ -28,7 +28,7 @@ This response will be called using **POST**, and will return a temporary authent
 
 ```python
 # Data dict to call on the username and password during authentication
-data = {"Username": "stpius", "Password": "RYn6cNYUma3dH3kqZu"}
+data = {"Username": "", "Password": ""}
 
 # This URL never changes (Unless RankOne changes their API)
 url = "https://api.rankonesport.com/PartnerAPI/Auth/ValidateUser"
@@ -36,7 +36,7 @@ url = "https://api.rankonesport.com/PartnerAPI/Auth/ValidateUser"
 # The headers dict to hold the content type and auth token/API key
 headers = {
     "Content-Type": "application/x-www-form-urlencoded",
-    "Authorization": "Basic cjQzdXF2eDN6d3ozMWFoazhhYnZmaWVueXo0ODVwNXo6dWRmbGt5dWYzNzhtOWpjOG91a3oydDMxamN4bXBvaHI=",
+    "Authorization": "",
 }
 
 # Here we set the json to key/value in order to parse the auth key later
@@ -176,4 +176,4 @@ scheduleChange.to_csv("NAMEFILEHERE.csv", index=False)
 ```
 ## Conclusion
 The API documentation doesn't mention anything about token limits, so running it multiple times should pose no issue.
-The CSV could be saved into a onedrive folder, which then gets moved to Sharepoint and emailed to the necessary contacts.
+The CSV could be saved into a OneDrive folder, which then gets moved to Sharepoint and emailed to the necessary contacts.
