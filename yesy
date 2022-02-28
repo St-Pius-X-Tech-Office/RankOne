@@ -1,0 +1,28 @@
+import pandas as pd
+import datetime
+import datetime
+
+original = [
+    "2022-01-25T19:30:00",
+    "2022-01-28T18:00:00",
+    "2022-02-01T18:00:00",
+    "2022-02-01T18:30:00",
+    "2022-02-04T17:00:00",
+    "2022-02-04T18:30:00",
+    "2022-02-05T12:00:00",
+    "2022-02-05T12:00:00",
+]
+
+print(original)
+
+new = []
+
+for i in range(len(original)):
+    new.append(pd.to_datetime(original[i]).strftime("%Y%m%d"))
+
+print(new)
+
+
+today = pd.to_datetime(datetime.datetime.today()).strftime("%Y%m%d")
+
+print(today)

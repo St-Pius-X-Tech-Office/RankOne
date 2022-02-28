@@ -6,3 +6,4 @@ Credentials.json
 *.csv
 *.xlsx
 *.pdf
+.DS_STORE
