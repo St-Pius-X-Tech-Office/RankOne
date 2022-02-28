@@ -7,7 +7,7 @@ import json
 
 # Load credentials from JSON File
 file = open("Credentials.json")
-data = json.load
+credentials = json.load(file)
 
 # Initialize Variables
 url = "https://api.rankonesport.com/PartnerAPI/Auth/ValidateUser"
@@ -15,9 +15,12 @@ headers = {
     "Content-Type": "application/x-www-form-urlencoded",
     "Authorization": "",
 }
-headers["Authorization"] = data["headers"]["Authorization"]
 
-response = requests.post(url, data=data, headers=headers, json={"key": "value"})
+headers["Authorization"] = credentials["headers"]["Authorization"]
+
+response = requests.post(
+    url, data=credentials["credentials"], headers=headers, json={"key": "value"}
+)
 print(response)
 
 headers["Authorization"] = "bearer " + response.json()["access_token"]
@@ -27,7 +30,9 @@ base_url = "https://api.rankonesport.com/PartnerAPI"
 sched_url = "/ScheduleUpdates/?ModifiedDateStart=20220201 00:00:00&ModifiedDateEnd=20220223 00:00:00"
 
 new = base_url + sched_url
-sched_response = requests.get(new, data=data, headers=headers)
+sched_response = requests.get(new, data=credentials["credentials"], headers=headers)
+print(sched_response)
+
 data = sched_response.json()
 
 out = pd.DataFrame(data)
