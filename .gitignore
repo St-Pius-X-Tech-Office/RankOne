@@ -1,0 +1,8 @@
+# Ignore untracked files
+test.py
+Credentials.json
+
+# Ignore sample output files
+*.csv
+*.xlsx
+*.pdf
