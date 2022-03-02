@@ -18,6 +18,8 @@ To run the python scripts, you will need to have the following:
 * Python Packages:
 	* Pandas
 	* Requests
+	* Datetime
+    * from DateTime import timedelta
 
 
 ### Credentials
