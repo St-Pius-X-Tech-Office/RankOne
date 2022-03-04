@@ -58,9 +58,14 @@ out.to_csv("test.csv", index=False)
 
 def scheduleChanges():
     # Modify Dataframe for legibility
-    out["StartDate"] = pd.to_datetime(out["StartDate"]).dt.strftime("%m-%d-%Y %I:%M%p")
-    out["EndDate"] = pd.to_datetime(out["StartDate"]).dt.strftime("%m-%d-%Y %I:%M%p")
-    out["DateModified"] = pd.to_datetime(out["DateModified"]).dt.strftime("%m-%d-%Y")
+    out["StartDate"] = pd.to_datetime(out["StartDate"]).dt.strftime("%m/%d/%Y %I:%M%p")
+    out["StartDateOffset"] = pd.to_datetime(out["StartDateOffset"]).dt.strftime(
+        "%m-%d-%Y"
+    )
+    out["EndDate"] = pd.to_datetime(out["StartDate"]).dt.strftime("%m/%d/%Y %I:%M%p")
+    out["DateModified"] = pd.to_datetime(out["DateModified"]).dt.strftime("%m/%d/%Y")
+
+    out.rename(columns={"StartDateOffset": "Original Start Date"}, inplace=True)
 
     # Filter out columns we need for schedule change requests
     schedule_Change = out[
@@ -68,6 +73,7 @@ def scheduleChanges():
             "SportName",
             "LevelName",
             "StartDate",
+            "Original Start Date",
             "EndDate",
             "DateModified",
             "FacilityName",
@@ -87,7 +93,7 @@ def scheduleChanges():
 
 
 def scoreUpdates():
-    """This function will be used to filter out the rows that include a score onlye. Any
+    """This function will be used to filter out the rows that include a score only. Any
     blank rows will be left out."""
 
     # Call a new dataframe called scores based off the "out" dataframe
