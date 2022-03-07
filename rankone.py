@@ -53,6 +53,11 @@ monthFix = dateutil.relativedelta.relativedelta(months=1)
 newDate = today - monthFix
 # The 'OUT' will be used for both the scoring and scheduleChange functions
 out = out[pd.to_datetime(out["StartDate"]) >= newDate]
+
+# Sort 'out' by the StartDate for final result readability
+out = out.sort_values(by="StartDate")
+
+# Export raw data as 'test' for data validation if needed
 out.to_csv("test.csv", index=False)
 
 
@@ -98,6 +103,7 @@ def scoreUpdates():
 
     # Call a new dataframe called scores based off the "out" dataframe
     scores = out
+
     # Filter the scores df to remove blank rows
     scores = scores[scores["CombinedScore"].str.len() > 0]
 
