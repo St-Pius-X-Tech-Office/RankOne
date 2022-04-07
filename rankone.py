@@ -8,7 +8,9 @@ import requests
 
 
 # Setup Logging format for better debugging
-logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.DEBUG)
+level = logging.INFO
+logfmt = "[%(levelname)s] - %(message)s"
+logging.basicConfig(level=level, format=logfmt)
 
 # Load credentials from JSON File
 file = open("Credentials.json")
