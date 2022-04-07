@@ -2,9 +2,13 @@ import datetime
 from datetime import timedelta
 import dateutil
 import json
+import logging
 import pandas as pd
 import requests
 
+
+# Setup Logging format for better debugging
+logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.DEBUG)
 
 # Load credentials from JSON File
 file = open("Credentials.json")
@@ -24,7 +28,7 @@ headers["Authorization"] = credentials["headers"]["Authorization"]
 response = requests.post(
     url, data=credentials["credentials"], headers=headers, json={"key": "value"}
 )
-print(response)
+logging.info(response)
 
 # Reassign the auth and content type to the new bearer token and JSON content-type
 headers["Authorization"] = "bearer " + response.json()["access_token"]
@@ -40,7 +44,7 @@ sched_url = f"/ScheduleUpdates/?ModifiedDateStart={lastWeek.strftime('%Y%m%d')} 
 
 new = base_url + sched_url
 sched_response = requests.get(new, data=credentials["credentials"], headers=headers)
-print(sched_response)
+logging.info(sched_response)
 
 # Convert response to JSON
 data = sched_response.json()
@@ -132,3 +136,5 @@ def scoreUpdates():
 # Call the functions as needed
 scheduleChanges()
 scoreUpdates()
+
+print("\nScript Complete\n")
